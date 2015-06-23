@@ -21,6 +21,7 @@ class DateTimeStrategy extends AbstractStrategy
      */
     protected $comparator;
 
+
     /**
      * Constructor.
      *
@@ -32,6 +33,7 @@ class DateTimeStrategy extends AbstractStrategy
         $this->datetime = $datetime;
         $this->comparator = $comparator;
     }
+
 
     /**
      * {@inheritdoc}
@@ -63,6 +65,7 @@ class DateTimeStrategy extends AbstractStrategy
 
         return $result;
     }
+
 
     /**
      * Returns the current time. Used for dependency injection.

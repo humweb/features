@@ -16,6 +16,7 @@ class Features
      */
     protected $features = [];
 
+
     /**
      * Create new feature.
      *
@@ -33,11 +34,12 @@ class Features
 
         $this->features[$name] = [
             'description' => $description,
-            'collection' => new StrategyCollection($strategies),
+            'collection'  => new StrategyCollection($strategies),
         ];
 
         return $this->features[$name]['collection'];
     }
+
 
     /**
      * @param string                            $feature      Feature identifier
@@ -47,11 +49,12 @@ class Features
      */
     public function pushStrategy($feature, $strategyName, $strategy = null, $args = [])
     {
-        if (!$this->exists($feature)) {
+        if ( ! $this->exists($feature)) {
             throw new \InvalidArgumentException('Duplicate feature identifier.');
         }
         $this->getCollection($feature)->add($strategyName, $strategy, $args);
     }
+
 
     /**
      * @param string $name Feature identifier
@@ -62,6 +65,7 @@ class Features
     {
         return $this->get($feature, 'collection');
     }
+
 
     /**
      * Checks if a feature with given name exists.
@@ -75,6 +79,7 @@ class Features
         return isset($this->features[$name]);
     }
 
+
     /**
      * Flush all features.
      */
@@ -82,6 +87,7 @@ class Features
     {
         $this->features = [];
     }
+
 
     /**
      * Returns feature or array item from feature array.
@@ -93,12 +99,13 @@ class Features
      */
     public function get($name, $key = null)
     {
-        if (!$this->exists($name)) {
+        if ( ! $this->exists($name)) {
             throw new \InvalidArgumentException('Unknown feature identifier.');
         }
 
-        return !is_null($key) ? $this->features[$name][$key] : $this->features[$name];
+        return ! is_null($key) ? $this->features[$name][$key] : $this->features[$name];
     }
+
 
     /**
      * @param string $feature Feature identifier
@@ -111,8 +118,9 @@ class Features
         return $this->getCollection($feature)->check($args);
     }
 
+
     /**
-     * @param string $name      Feature identifier
+     * @param string $name Feature identifier
      * @param int    $threshold
      *
      * @return $this

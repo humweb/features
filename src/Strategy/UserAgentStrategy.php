@@ -23,6 +23,7 @@ class UserAgentStrategy extends AbstractStrategy
         return false;
     }
 
+
     /**
      * Returns current user agent.
      *
@@ -30,7 +31,7 @@ class UserAgentStrategy extends AbstractStrategy
      */
     public function getUserAgent()
     {
-        if (!isset($_SERVER['HTTP_USER_AGENT'])) {
+        if ( ! isset($_SERVER['HTTP_USER_AGENT'])) {
             return '';
         }
 

@@ -28,6 +28,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
      */
     protected $minRange;
 
+
     /**
      * Constructor.
      *
@@ -63,13 +64,14 @@ class DateTimeRangeStrategy extends AbstractStrategy
 
         $result = true;
         foreach ($strategies as $var => $Strategy) {
-            if (!call_user_func($Strategy, $feature)) {
+            if ( ! call_user_func($Strategy, $feature)) {
                 $result = false;
             }
         }
 
         return $result;
     }
+
 
     public function asDateTimeStrategy($datetime, $comparator)
     {

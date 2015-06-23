@@ -14,6 +14,7 @@ abstract class AbstractStrategy implements StrategyInterface
      */
     protected $name;
 
+
     /**
      * {@inheritdoc}
      */
@@ -25,6 +26,7 @@ abstract class AbstractStrategy implements StrategyInterface
 
         return $this->name;
     }
+
 
     /**
      * Sets the strategy's name.

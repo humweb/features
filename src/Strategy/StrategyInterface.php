@@ -16,6 +16,7 @@ interface StrategyInterface
      */
     public function handle($args);
 
+
     /**
      * Returns strategy's name.
      *

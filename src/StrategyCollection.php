@@ -24,6 +24,7 @@ class StrategyCollection implements \ArrayAccess
 
     protected $threshold = 1;
 
+
     /**
      * @param array $strategies
      */
@@ -32,6 +33,7 @@ class StrategyCollection implements \ArrayAccess
         $this->resolver = new StrategyResolver();
         $this->strategies = $strategies;
     }
+
 
     /**
      * Adds strategies to feature object.
@@ -56,6 +58,7 @@ class StrategyCollection implements \ArrayAccess
         return $this;
     }
 
+
     /**
      * Adds strategy to feature object.
      *
@@ -71,17 +74,17 @@ class StrategyCollection implements \ArrayAccess
         if (is_callable($class)) {
             $this->strategies['__'.$name] = [
                 'class' => $class,
-                'args' => $args,
+                'args'  => $args,
             ];
         } elseif ($class instanceof StrategyInterface) {
             $this->strategies[$name] = [
                 'class' => '\\'.trim($class, '\\'),
-                'args' => $args,
+                'args'  => $args,
             ];
         } else {
 
             // Strategy must be a string
-            if (!is_string($class)) {
+            if ( ! is_string($class)) {
                 throw new InvalidArgumentException(sprintf('Expected a string. Actual: %s', gettype($class)));
             }
 
@@ -89,22 +92,25 @@ class StrategyCollection implements \ArrayAccess
 
             $this->strategies[$name] = [
                 'class' => $class,
-                'args' => $args,
+                'args'  => $args,
             ];
         }
 
         return $this;
     }
 
+
     public function count()
     {
         return count($this->strategies);
     }
 
+
     public function flush()
     {
         return $this->strategies = [];
     }
+
 
     public function check($args = [])
     {
@@ -129,6 +135,7 @@ class StrategyCollection implements \ArrayAccess
         return $isEnabled >= $this->threshold;
     }
 
+
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Whether a offset exists.
@@ -148,6 +155,7 @@ class StrategyCollection implements \ArrayAccess
     {
         return isset($this->strategies[$offset]) || isset($this->strategies['__'.$offset]);
     }
+
 
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>
@@ -170,6 +178,7 @@ class StrategyCollection implements \ArrayAccess
         return $this->strategies['__'.$offset];
     }
 
+
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Offset to set.
@@ -188,6 +197,7 @@ class StrategyCollection implements \ArrayAccess
         $this->strategies[$offset] = $value;
     }
 
+
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Offset to unset.
@@ -203,12 +213,14 @@ class StrategyCollection implements \ArrayAccess
         unset($this->strategies[$offset]);
     }
 
+
     public function off()
     {
         $this->status = self::STATUS_DISABLED;
 
         return $this;
     }
+
 
     public function on()
     {
@@ -217,10 +229,12 @@ class StrategyCollection implements \ArrayAccess
         return $this;
     }
 
+
     public function getStatus()
     {
         return $this->status;
     }
+
 
     /**
      * @param int $threshold
@@ -234,10 +248,12 @@ class StrategyCollection implements \ArrayAccess
         return $this;
     }
 
+
     protected function isClosureStrategy($key = '')
     {
         return substr($key, 0, 2) === '__';
     }
+
 
     /**
      * @return int
@@ -246,6 +262,7 @@ class StrategyCollection implements \ArrayAccess
     {
         return $this->threshold;
     }
+
 
     /**
      * @return array

@@ -10,6 +10,7 @@ class ClassResolver
     protected $namespace = '';
     protected $suffix = '';
 
+
     /**
      * @param string $class
      *
@@ -30,6 +31,7 @@ class ClassResolver
         throw new \InvalidArgumentException('Unable to resolve class: '.$class);
     }
 
+
     /**
      * @param mixed $namespace
      *
@@ -42,6 +44,7 @@ class ClassResolver
         return $this;
     }
 
+
     /**
      * @return mixed
      */
@@ -49,6 +52,7 @@ class ClassResolver
     {
         return $this->namespace;
     }
+
 
     /**
      * @param string $suffix
@@ -61,6 +65,7 @@ class ClassResolver
 
         return $this;
     }
+
 
     /**
      * @return string
