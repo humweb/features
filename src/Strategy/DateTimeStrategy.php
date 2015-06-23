@@ -40,40 +40,28 @@ class DateTimeStrategy extends AbstractStrategy
      */
     public function handle($args = [])
     {
-        $time = $this->getCurrentTime();
-        $datetime = strtotime($this->datetime);
+        $time = time();
 
         switch ($this->comparator) {
             case '<':
-                $result = $time < $datetime;
+                $result = $time < $this->datetime;
                 break;
             case '<=':
-                $result = $time <= $datetime;
+                $result = $time <= $this->datetime;
                 break;
             case '>=':
-                $result = $time >= $datetime;
+                $result = $time >= $this->datetime;
                 break;
             case '>':
-                $result = $time > $datetime;
+                $result = $time > $this->datetime;
                 break;
             case '==':
-                $result = $time == $datetime;
+                $result = $time == $this->datetime;
                 break;
             default:
                 throw new \InvalidArgumentException('Bad comparison operator.');
         }
 
         return $result;
-    }
-
-
-    /**
-     * Returns the current time. Used for dependency injection.
-     *
-     * @return string
-     */
-    public function getCurrentTime()
-    {
-        return time();
     }
 }

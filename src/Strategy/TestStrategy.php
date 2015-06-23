@@ -7,6 +7,7 @@ namespace Humweb\Features\Strategy;
  */
 class TestStrategy extends AbstractStrategy
 {
+
     /**
      * {@inheritdoc}
      */

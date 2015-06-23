@@ -45,10 +45,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
 
 
     /**
-     * @param       $feature
-     * @param array $args
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(array $args = [])
     {
@@ -59,12 +56,12 @@ class DateTimeRangeStrategy extends AbstractStrategy
             if ($this->inclusive) {
                 $comparator .= '=';
             }
-            $strategies[$var] = $this->asDateTimeStrategy($this->$var, $comparator);
+            $strategies[$var] = $this->createDateTimeStrategy($this->$var, $comparator);
         }
 
         $result = true;
-        foreach ($strategies as $var => $Strategy) {
-            if ( ! call_user_func($Strategy, $feature)) {
+        foreach ($strategies as $var => $strategy) {
+            if ( ! call_user_func($strategy, $feature)) {
                 $result = false;
             }
         }
@@ -73,7 +70,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
     }
 
 
-    public function asDateTimeStrategy($datetime, $comparator)
+    public function createDateTimeStrategy($datetime, $comparator)
     {
         return new DateTimeStrategy($datetime, $comparator);
     }
