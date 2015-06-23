@@ -27,8 +27,7 @@ class ClassResolver
             return $class;
         }
 
-        var_dump($assembledClass, $class);
-        throw new \InvalidArgumentException();
+        throw new \InvalidArgumentException('Unable to resolve class: '.$class);
     }
 
     /**
