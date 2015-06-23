@@ -7,12 +7,19 @@ namespace Humweb\Features\Strategy;
  */
 abstract class AbstractStrategy implements StrategyInterface
 {
+
     /**
-     * Strategy's name.
+     * Strategy name
      *
      * @var string
      */
     protected $name;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    abstract public function handle($args);
 
 
     /**
@@ -29,9 +36,7 @@ abstract class AbstractStrategy implements StrategyInterface
 
 
     /**
-     * Sets the strategy's name.
-     *
-     * @param string $name Strategy's name.
+     * {@inheritdoc}
      */
     public function setName($name = null)
     {

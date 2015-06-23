@@ -38,7 +38,7 @@ class DateTimeStrategy extends AbstractStrategy
     /**
      * {@inheritdoc}
      */
-    public function handle($Feature, array $args = [])
+    public function handle($args = [])
     {
         $time = $this->getCurrentTime();
         $datetime = strtotime($this->datetime);

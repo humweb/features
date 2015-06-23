@@ -50,7 +50,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
      *
      * @return bool
      */
-    public function handle($feature, array $args = [])
+    public function handle(array $args = [])
     {
         $strategies = array();
         $comparators = array('minRange' => '>', 'maxRange' => '<');

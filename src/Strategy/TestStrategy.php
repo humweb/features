@@ -10,7 +10,7 @@ class TestStrategy extends AbstractStrategy
     /**
      * {@inheritdoc}
      */
-    public function handle($Feature, array $args = [])
+    public function handle(array $args = [])
     {
         return;
     }
