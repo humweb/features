@@ -54,7 +54,7 @@ If you discover any security related issues, please email ryun@humboldtweb.com i
 
 ## Credits
 
-- [ryun](https://github.com/ryun)
+- [Ryan Shofner (Maintainer)](https://github.com/ryun)
 - [All Contributors](../../contributors)
 
 ## License
