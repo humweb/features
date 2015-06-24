@@ -8,5 +8,5 @@ namespace Humweb\Features\Resolvers;
 class FeatureResolver extends ClassResolver
 {
     protected $namespace = 'Humweb\\Features\\Feature';
-    protected $suffix = 'Feature';
+    protected $suffix    = 'Feature';
 }

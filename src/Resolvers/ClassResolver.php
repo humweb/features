@@ -8,7 +8,7 @@ namespace Humweb\Features\Resolvers;
 class ClassResolver
 {
     protected $namespace = '';
-    protected $suffix = '';
+    protected $suffix    = '';
 
 
     /**
