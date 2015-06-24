@@ -20,11 +20,18 @@ $ composer require humweb/features
 ``` php
     $features = new Features();
 
-    $features->create('testFeature', 'Feature test collection', [
-        'DataTime' => [
-            'class' => 'DataTime'
-        ]
-    ]);
+    $features->create('testFeature', 'Feature test collection')
+        ->add('StrategyKey', 'DataTime', [
+                'start'  =>'2100-11-10',
+                'end'    => '2100-12-10',
+                'strict' => false
+        ])
+        ->setThreshold(1);
+    
+    if ($this->features->isEnabled('testFeature')) {
+        // Do something special
+    });
+
 ```
 
 ## Change log
