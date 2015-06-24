@@ -2,8 +2,10 @@
 
 # Features Toggle
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/humweb/features.svg?style=flat-square)](https://packagist.org/packages/humweb/features)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[ ![Build Status](https://codeship.com/projects/79a7e160-fb9e-0132-e7f2-0ea73193a6c8/status?branch=master)](https://codeship.com/projects/87216)
+[![Build Status](https://img.shields.io/travis/humweb/features/master.svg?style=flat-square)](https://travis-ci.org/humweb/features)
+[![Total Downloads](https://img.shields.io/packagist/dt/humweb/features.svg?style=flat-square)](https://packagist.org/packages/humweb/features)
 
 Feature Toggle allows developers to toggle on/off features in the system using one or multiple Strategies.
 
