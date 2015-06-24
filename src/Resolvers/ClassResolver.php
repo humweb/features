@@ -28,7 +28,7 @@ class ClassResolver
             return $class;
         }
 
-        throw new \InvalidArgumentException('Unable to resolve class: '.$class);
+        throw new \InvalidArgumentException('Unable to resolve class: '.$class.' or '.$assembledClass);
     }
 
 
