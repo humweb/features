@@ -120,7 +120,7 @@ class StrategyCollection implements \ArrayAccess
 
         $isEnabled = 0;
         foreach ($this->strategies as $name => $strategy) {
-            if ($this->isClosureStrategy($name)) {
+            if ($this->isAnonymousFunctionStrategy($name)) {
                 if ($strategy['class']($strategy['args'])) {
                     $isEnabled++;
                 }
@@ -249,7 +249,7 @@ class StrategyCollection implements \ArrayAccess
     }
 
 
-    protected function isClosureStrategy($key = '')
+    protected function isAnonymousFunctionStrategy($key = '')
     {
         return substr($key, 0, 2) === '__';
     }
