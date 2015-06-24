@@ -28,7 +28,7 @@ $ composer require humweb/features
         ])
         ->setThreshold(1);
     
-    if ($this->features->isEnabled('testFeature')) {
+    if ($features->isEnabled('testFeature')) {
         // Do something special
     });
 
