@@ -2,66 +2,55 @@
 
 namespace Humweb\Features\Strategy;
 
+use DateTime;
+
 /**
  * DateTime strategy.
  */
 class DateTimeStrategy extends AbstractStrategy
 {
-    /**
-     * Date time to use in comparison.
-     *
-     * @var string
-     */
-    protected $datetime;
-
-    /**
-     * Comparison operator.
-     *
-     * @var string
-     */
-    protected $comparator;
-
-
-    /**
-     * Constructor.
-     *
-     * @param string $datetime   Date time to use in comparison.
-     * @param string $comparator Comparison operator.
-     */
-    public function __construct($datetime, $comparator = '>=')
-    {
-        $this->datetime = $datetime;
-        $this->comparator = $comparator;
-    }
-
 
     /**
      * {@inheritdoc}
      */
     public function handle($args = [])
     {
-        $time = time();
+        $operator = $this->argGet($args, 'operator', '>=');
+        $datetime = $this->argGet($args, 'datetime', time());
 
-        switch ($this->comparator) {
-            case '<':
-                $result = $time < $this->datetime;
-                break;
-            case '<=':
-                $result = $time <= $this->datetime;
-                break;
-            case '>=':
-                $result = $time >= $this->datetime;
-                break;
-            case '>':
-                $result = $time > $this->datetime;
-                break;
-            case '==':
-                $result = $time == $this->datetime;
-                break;
-            default:
-                throw new \InvalidArgumentException('Bad comparison operator.');
+        if ( ! ($datetime instanceof DateTime)) {
+            $datetime = new DateTime($datetime);
         }
 
-        return $result;
+        return $this->compare($datetime, new DateTime(), $operator);
+    }
+
+
+    protected function compare($a, $b, $operator = '>=')
+    {
+        switch ($operator) {
+            case '<':
+                return $a < $b;
+                break;
+            case '<=':
+                return $a <= $b;
+                break;
+            case '>=':
+                return $a >= $b;
+                break;
+            case '>':
+                return $a > $b;
+                break;
+            case '==':
+            case '===':
+                return $a == $b;
+                break;
+            case '!=':
+            case '!==':
+                return $a != $b;
+                break;
+            default:
+                throw new \InvalidArgumentException('Invalid comparison operator.');
+        }
     }
 }
