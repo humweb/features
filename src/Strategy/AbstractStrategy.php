@@ -46,5 +46,12 @@ abstract class AbstractStrategy implements StrategyInterface
         }
 
         $this->name = $name;
+        return $this;
+
+    }
+
+    protected function argGet($ary = [], $key, $default = null)
+    {
+        return isset($ary[$key]) ? $ary[$key] : $default;
     }
 }
