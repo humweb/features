@@ -5,10 +5,7 @@ namespace Humweb\Features\Tests;
 use Humweb\Features\StrategyCollection;
 
 /**
- * Test ClassResolver class.
- *
- * @package Humweb\Features
- * @coversDefaultClass \Humweb\Features\ClassResolver
+ * Test StrategyCollection class.
  */
 class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
 {

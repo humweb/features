@@ -7,9 +7,6 @@ use Humweb\Features\StrategyCollection;
 
 /**
  * Test Features class.
- *
- * @package Humweb\Features\features
- * @coversDefaultClass \Humweb\Features\ClassResolver
  */
 class FeaturesTest extends \PHPUnit_Framework_TestCase
 {
