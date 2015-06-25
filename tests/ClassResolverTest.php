@@ -7,7 +7,7 @@ use Humweb\Features\Resolvers\ClassResolver;
 /**
  * Test ClassResolver class.
  *
- * @package Humweb\Features\Resolvers\ClassResolver
+ * @package Humweb\Features
  */
 class ClassResolverTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,7 +36,6 @@ class ClassResolverTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers ::resolve
      */
     public function is_resolves_class_from_default_namespace()
     {
@@ -50,7 +49,6 @@ class ClassResolverTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers ::resolve
      */
     public function is_resolves_class_will_full_namespace()
     {
