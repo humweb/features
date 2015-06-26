@@ -26,29 +26,32 @@ class DateTimeStrategy extends AbstractStrategy
     }
 
 
+    /**
+     * Compare two datetime objects
+     *
+     * @param DateTime $a
+     * @param DateTime $b
+     * @param string   $operator
+     *
+     * @return bool
+     */
     protected function compare($a, $b, $operator = '>=')
     {
         switch ($operator) {
             case '<':
                 return $a < $b;
-                break;
             case '<=':
                 return $a <= $b;
-                break;
             case '>=':
                 return $a >= $b;
-                break;
             case '>':
                 return $a > $b;
-                break;
             case '==':
             case '===':
                 return $a == $b;
-                break;
             case '!=':
             case '!==':
                 return $a != $b;
-                break;
             default:
                 throw new \InvalidArgumentException('Invalid comparison operator.');
         }

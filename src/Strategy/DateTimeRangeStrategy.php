@@ -13,7 +13,6 @@ class DateTimeRangeStrategy extends AbstractStrategy
      */
     public function handle($args = [])
     {
-        $result = true;
 
         $strict = $this->argGet($args, 'strict', true);
 
@@ -44,7 +43,15 @@ class DateTimeRangeStrategy extends AbstractStrategy
     }
 
 
-    public function runDateTimeStrategy($datetime, $operator)
+    /**
+     * Run datetime strategy
+     *
+     * @param string|\DateTime $datetime
+     * @param string $operator
+     *
+     * @return bool
+     */
+    public function runDateTimeStrategy($datetime, $operator = '>=')
     {
         $strategy = new DateTimeStrategy();
 

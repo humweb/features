@@ -11,7 +11,7 @@ use Humweb\Features\Strategy\StrategyInterface;
 class StrategyCollection implements \ArrayAccess
 {
     const STATUS_DISABLED = 0;
-    const STATUS_ENABLED = 1;
+    const STATUS_ENABLED  = 1;
 
     /**
      * @var array
@@ -30,7 +30,7 @@ class StrategyCollection implements \ArrayAccess
      */
     public function __construct($strategies = array())
     {
-        $this->resolver = new StrategyResolver();
+        $this->resolver   = new StrategyResolver();
         $this->strategies = $strategies;
     }
 
@@ -38,8 +38,8 @@ class StrategyCollection implements \ArrayAccess
     /**
      * Adds strategies to feature object.
      *
-     * @param string                     $name
-     * @param callable|StrategyInterface $strategy
+     * @param string                          $name
+     * @param callable|StrategyInterface|null $strategy
      *
      * @return $this
      */
@@ -62,14 +62,14 @@ class StrategyCollection implements \ArrayAccess
     /**
      * Adds strategy to feature object.
      *
-     * @param string $name
-     * @param string $class Strategy class name.
-     * @param array  $args
+     * @param string                          $name
+     * @param callable|StrategyInterface|null $class Strategy class name.
+     * @param array                           $args
      *
      * @return $this
      * @throws InvalidArgumentException
      */
-    public function addStrategy($name, $class, $args = [])
+    public function addStrategy($name, $class = null, $args = [])
     {
         if (is_callable($class)) {
             $this->strategies['__'.$name] = [
@@ -112,7 +112,7 @@ class StrategyCollection implements \ArrayAccess
     }
 
 
-    public function check($args = [])
+    public function check()
     {
         if ($this->status === self::STATUS_DISABLED) {
             return false;
@@ -126,6 +126,7 @@ class StrategyCollection implements \ArrayAccess
                 }
             } else {
                 $obj = new $strategy['class']();
+
                 if ($obj->handle($strategy['args'])) {
                     $isEnabled++;
                 }

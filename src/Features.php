@@ -57,13 +57,15 @@ class Features
 
 
     /**
+     * Get Collection by feature name
+     *
      * @param string $name Feature identifier
      *
      * @return StrategyCollection
      */
-    public function getCollection($feature)
+    public function getCollection($name)
     {
-        return $this->get($feature, 'collection');
+        return $this->get($name, 'collection');
     }
 
 
