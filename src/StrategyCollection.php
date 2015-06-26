@@ -112,7 +112,12 @@ class StrategyCollection implements \ArrayAccess
     }
 
 
-    public function check()
+    /**
+     * @param array $args
+     *
+     * @return bool
+     */
+    public function check($args = [])
     {
         if ($this->status === self::STATUS_DISABLED) {
             return false;
@@ -125,7 +130,7 @@ class StrategyCollection implements \ArrayAccess
                     $isEnabled++;
                 }
             } else {
-                $obj = new $strategy['class']();
+                $obj = new $strategy['class']($args);
 
                 if ($obj->handle($strategy['args'])) {
                     $isEnabled++;
