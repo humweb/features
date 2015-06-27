@@ -33,8 +33,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
                 $range['operator'] .= '=';
             }
 
-            if ($this->runDateTimeStrategy($range['date'], $range['operator']) === false)
-            {
+            if ($this->runDateTimeStrategy($range['date'], $range['operator']) === false) {
                 return false;
             }
         }
@@ -47,7 +46,7 @@ class DateTimeRangeStrategy extends AbstractStrategy
      * Run datetime strategy
      *
      * @param string|\DateTime $datetime
-     * @param string $operator
+     * @param string           $operator
      *
      * @return bool
      */
