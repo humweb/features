@@ -23,19 +23,39 @@ $ composer require humweb/features
 ## Usage
 
 ``` php
-    $features = new Features();
+$features = new Features();
 
-    $features->create('testFeature', 'Feature test collection')
-        ->add('StrategyKeyString', 'DataTime', [
-                'start'  =>'2100-11-10',
-                'end'    => '2100-12-10',
-                'strict' => false
-        ])
-        ->setThreshold(1);
+$features->create('test.feature', 'Example feature description')
+    ->add('StrategyKeyString', 'DataTime', [
+            'start'  =>'2100-11-10',
+            'end'    => '2100-12-10',
+            'strict' => false
+    ])
+    ->setThreshold(1);
+
+if ($features->isEnabled('testFeature')) {
+    // Do something special
+});
+
+```
+
+``` php
+$features = new Features();
+
+$features->create('business.hours', 'Match days of week')
+    ->add('StrategyKeyString', 'DaysOfWeek', [
+            'days' => ['wed', 'thu', 'fri']
+    ])
+    ->add('StrategyKeyString', 'DataTime', [
+            'start'  =>'9pm',
+            'end'    => '5pm',
+            'strict' => true
+    ])
+    ->setThreshold(2);
     
-    if ($features->isEnabled('testFeature')) {
-        // Do something special
-    });
+if ($features->isEnabled('business.hours')) {
+    // Do something special
+});
 
 ```
 
