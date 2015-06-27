@@ -77,13 +77,9 @@ class FeaturesTest extends \PHPUnit_Framework_TestCase
         $this->features->flush();
 
         // Threshold:2 True: 2 False: 1
-        $this->features
-            ->create('testFeature')
-            ->add('test1', function () {
+        $this->features->create('testFeature')->add('test1', function () {
                 return true;
-            })
-            ->add('test2', 'UserAgent', ['patterns' => ['/foo$/', '/^bar/']])
-            ->setThreshold(2);
+            })->add('test2', 'UserAgent', ['patterns' => ['/foo$/', '/^bar/']])->setThreshold(2);
 
         $_SERVER['HTTP_USER_AGENT'] = 'foo';
         $this->assertEquals(true, $this->features->isEnabled('testFeature'));

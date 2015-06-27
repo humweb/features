@@ -22,11 +22,30 @@ $ composer require humweb/features
 
 ## Usage
 
+#### DateTime Strategy
+
 ``` php
 $features = new Features();
 
 $features->create('test.feature', 'Example feature description')
     ->add('StrategyKeyString', 'DataTime', [
+        'date'     => '2015-11-10',
+        'operator' => '>'
+    ])
+    ->setThreshold(1);
+
+if ($features->isEnabled('test.feature')) {
+    // Do something special
+});
+
+
+#### DateTimeRange Strategy
+
+``` php
+$features = new Features();
+
+$features->create('test.feature', 'Example feature description')
+    ->add('StrategyKeyString', 'DataTimeRange', [
             'start'  =>'2100-11-10',
             'end'    => '2100-12-10',
             'strict' => false
@@ -39,19 +58,21 @@ if ($features->isEnabled('test.feature')) {
 
 ```
 
+#### DaysOfWeek mixed with DateTimeRange Strategy
+
 ``` php
 $features = new Features();
 
 $features->create('business.hours', 'Match days of week')
-    ->add('StrategyKeyString', 'DaysOfWeek', [
-            'days' => ['wed', 'thu', 'fri']
-    ])
-    ->add('StrategyKeyString', 'DataTime', [
-            'start'  =>'9pm',
-            'end'    => '5pm',
-            'strict' => true
-    ])
-    ->setThreshold(2);
+     ->add('DaysOpen', 'DaysOfWeek', [
+         'days' => ['sat']
+     ])
+     ->add('StoreHours', 'DateTimeRange', [
+         'start'  =>'9am',
+         'end'    => '11pm',
+         'strict' => true
+     ])
+     ->setThreshold(2);
     
 if ($features->isEnabled('business.hours')) {
     // Do something special
