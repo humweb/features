@@ -18,7 +18,9 @@ class ClassResolver
      */
     public function resolve($class)
     {
-        $assembledClass = '\\'.trim($this->getNamespace(), '\\').'\\'.ucfirst($class).$this->getSuffix();
+        $class = $this->formatClassName($class);
+
+        $assembledClass = '\\'.trim($this->getNamespace(), '\\').'\\'.$class.$this->getSuffix();
 
         if (class_exists($assembledClass)) {
             return $assembledClass;
@@ -29,6 +31,21 @@ class ClassResolver
         }
 
         throw new \InvalidArgumentException('Unable to resolve class: '.$class.' or '.$assembledClass);
+    }
+
+
+    /**
+     * Format class name to "studly case"
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    protected function formatClassName($name)
+    {
+        $name = ucwords(str_replace(['-', '_'], ' ', $name));
+
+        return str_replace(' ', '', $name);
     }
 
 
