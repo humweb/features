@@ -37,7 +37,7 @@ $features->create('test.feature', 'Example feature description')
 if ($features->isEnabled('test.feature')) {
     // Do something special
 });
-
+```
 
 #### DateTimeRange Strategy
 
