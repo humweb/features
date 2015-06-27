@@ -33,7 +33,7 @@ $features->create('test.feature', 'Example feature description')
     ])
     ->setThreshold(1);
 
-if ($features->isEnabled('testFeature')) {
+if ($features->isEnabled('test.feature')) {
     // Do something special
 });
 
