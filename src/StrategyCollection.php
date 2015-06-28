@@ -72,14 +72,16 @@ class StrategyCollection implements \ArrayAccess
     public function addStrategy($name, $class = null, $args = [])
     {
         if (is_callable($class)) {
-            $this->strategies['__'.$name] = [
+            $this->strategies[$name] = [
                 'class' => $class,
                 'args'  => $args,
+                'type'  => 'function'
             ];
         } elseif ($class instanceof StrategyInterface) {
             $this->strategies[$name] = [
                 'class' => '\\'.trim($class, '\\'),
                 'args'  => $args,
+                'type'  => 'class'
             ];
         } else {
 
@@ -93,6 +95,7 @@ class StrategyCollection implements \ArrayAccess
             $this->strategies[$name] = [
                 'class' => $class,
                 'args'  => $args,
+                'type'  => 'class'
             ];
         }
 
@@ -125,7 +128,7 @@ class StrategyCollection implements \ArrayAccess
 
         $isEnabled = 0;
         foreach ($this->strategies as $name => $strategy) {
-            if ($this->isAnonymousFunctionStrategy($name)) {
+            if ($this->isAnonymousFunctionStrategy($strategy)) {
                 if ($strategy['class']($strategy['args'])) {
                     $isEnabled++;
                 }
@@ -255,9 +258,9 @@ class StrategyCollection implements \ArrayAccess
     }
 
 
-    protected function isAnonymousFunctionStrategy($key = '')
+    protected function isAnonymousFunctionStrategy($strategy = [])
     {
-        return substr($key, 0, 2) === '__';
+        return $strategy['type'] === 'function';
     }
 
 
