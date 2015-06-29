@@ -18,7 +18,7 @@ class Features
 
 
     /**
-     * Create new feature.
+     * Create a new feature
      *
      * @param string $name        Feature identifier.
      * @param string $description Feature description
@@ -42,6 +42,8 @@ class Features
 
 
     /**
+     * Adds strategy to feature
+     *
      * @param string                            $feature      Feature identifier
      * @param string                            $strategyName Strategy name
      * @param string|callable|StrategyInterface $strategy     Strategy class or closure
@@ -92,7 +94,7 @@ class Features
 
 
     /**
-     * Returns feature or array item from feature array.
+     * Get Feature or item from feature array
      *
      * @param string      $name
      * @param null|string $key
@@ -110,6 +112,8 @@ class Features
 
 
     /**
+     * Check if feature is enabled
+     *
      * @param string $feature Feature identifier
      * @param array  $args    arguments passed to strategies checker
      *
@@ -122,6 +126,8 @@ class Features
 
 
     /**
+     * Set the feature's threshold
+     *
      * @param string $name Feature identifier
      * @param int    $threshold
      *

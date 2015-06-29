@@ -4,11 +4,6 @@ namespace Humweb\Features\Strategy;
 
 use DateTime;
 
-/**
- * Days of week
- * days-of-week
- * days_of_week
- */
 class DaysOfWeekStrategy extends AbstractStrategy
 {
 
