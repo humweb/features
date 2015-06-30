@@ -132,17 +132,23 @@ class StrategyCollection implements \ArrayAccess
                 if ($strategy['class']($strategy['args'])) {
                     $isEnabled++;
                 }
-            } else {
-
-                $obj = ($strategy['type'] == 'class_instance') ? $strategy['class_instance'] : new $strategy['class']($args);
-
-                if ($obj->handle($strategy['args'])) {
-                    $isEnabled++;
-                }
+            } elseif ($this->callStrategyInstance($strategy, $args)) {
+                $isEnabled++;
             }
         }
 
         return $isEnabled >= $this->threshold;
+    }
+
+
+    protected function callStrategyInstance($strategy, $args = [])
+    {
+        if ($strategy['type'] == 'class_instance') {
+            $instance = $strategy['class'];
+        } else {
+            $instance = new $strategy['class']($args);
+        }
+        return $instance->handle($strategy['args']);
     }
 
 
