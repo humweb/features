@@ -2,7 +2,7 @@
 
 namespace Humweb\Features\Tests;
 
-use Humweb\Features\Strategy\DateTimeStrategy;
+use Humweb\Features\Strategy\TestStrategy;
 use Humweb\Features\StrategyCollection;
 
 /**
@@ -125,9 +125,9 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $this->collection->flush();
 
-        $instance = new DateTimeStrategy;
+        $instance = new TestStrategy();
         $this->collection->add('test1', $instance);
-        $this->assertEquals(true, $this->collection['test1']['class'] instanceof DateTimeStrategy);
+        $this->assertEquals(true,  $this->collection->check());
 
     }
     /**
@@ -174,8 +174,11 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
         $this->collection['test1'] = ['DateTime'];
         $this->assertTrue(isset($this->collection['test1']));
 
+        $this->assertEquals(1, $this->collection->count());
+
         unset($this->collection['test1']);
 
+        $this->assertEquals(0, $this->collection->count());
         $this->assertFalse(isset($this->collection['test1']));
     }
 
