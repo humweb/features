@@ -38,7 +38,7 @@ class StrategyCollection implements \ArrayAccess
     /**
      * Adds strategies to feature object.
      *
-     * @param string                          $name
+     * @param string|array                    $name
      * @param callable|StrategyInterface|null $strategy
      *
      * @return $this
