@@ -6,7 +6,7 @@ use DateTime;
 use Humweb\Features\StrategyCollection;
 
 /**
- * Test DateTimeStrategy class
+ * Test DateTimeRangeStrategy class
  *
  * @package Humweb\Features
  */
