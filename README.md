@@ -36,7 +36,7 @@ $features->create('test.feature', 'Example feature description')
 
 if ($features->isEnabled('test.feature')) {
     // Do something special
-});
+}
 ```
 
 #### DateTimeRange Strategy
@@ -54,7 +54,7 @@ $features->create('test.feature', 'Example feature description')
 
 if ($features->isEnabled('test.feature')) {
     // Do something special
-});
+}
 
 ```
 
@@ -76,7 +76,7 @@ $features->create('business.hours', 'Match days of week')
     
 if ($features->isEnabled('business.hours')) {
     // Do something special
-});
+}
 
 ```
 
