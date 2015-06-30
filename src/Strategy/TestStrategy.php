@@ -8,7 +8,7 @@ namespace Humweb\Features\Strategy;
 class TestStrategy extends AbstractStrategy
 {
 
-    protected $name = 'Test';
+    protected $name;
 
     /**
      * {@inheritdoc}

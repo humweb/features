@@ -79,15 +79,15 @@ class StrategyCollection implements \ArrayAccess
             ];
         } elseif ($class instanceof StrategyInterface) {
             $this->strategies[$name] = [
-                'class' => '\\'.trim($class, '\\'),
+                'class' => $class,
                 'args'  => $args,
-                'type'  => 'class'
+                'type'  => 'class_instance'
             ];
         } else {
 
             // Strategy must be a string
             if ( ! is_string($class)) {
-                throw new InvalidArgumentException(sprintf('Expected a string. Actual: %s', gettype($class)));
+                throw new \InvalidArgumentException(sprintf('Expected a string. Actual: %s', gettype($class)));
             }
 
             $class = $this->resolver->resolve($class);
@@ -133,7 +133,8 @@ class StrategyCollection implements \ArrayAccess
                     $isEnabled++;
                 }
             } else {
-                $obj = new $strategy['class']($args);
+
+                $obj = ($strategy['type'] == 'class_instance') ? $strategy['class_instance'] : new $strategy['class']($args);
 
                 if ($obj->handle($strategy['args'])) {
                     $isEnabled++;

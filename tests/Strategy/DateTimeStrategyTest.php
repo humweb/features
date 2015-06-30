@@ -96,6 +96,16 @@ class DateTimeStrategyTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * @test
+     */
+    public function it_throws_exception_on_invalid_comparator()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->assertStrategy('2100-12-12', '%', true);
+    }
+
+
     protected function assertStrategy($date, $operator, $expected = true)
     {
         $this->collection->addStrategy('DateTimeTest', 'DateTime', [
