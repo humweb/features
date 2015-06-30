@@ -8,11 +8,13 @@ namespace Humweb\Features\Strategy;
 class TestStrategy extends AbstractStrategy
 {
 
+    protected $name = 'Test';
+
     /**
      * {@inheritdoc}
      */
-    public function handle(array $args = [])
+    public function handle($args = [])
     {
-        return;
+        return true;
     }
 }
