@@ -78,8 +78,8 @@ class FeaturesTest extends \PHPUnit_Framework_TestCase
 
         // Threshold:2 True: 2 False: 1
         $this->features->create('testFeature')->add('test1', function () {
-                return true;
-            })->add('test2', 'UserAgent', ['patterns' => ['/foo$/', '/^bar/']])->setThreshold(2);
+            return true;
+        })->add('test2', 'UserAgent', ['patterns' => ['/foo$/', '/^bar/']])->setThreshold(2);
 
         $_SERVER['HTTP_USER_AGENT'] = 'foo';
         $this->assertEquals(true, $this->features->isEnabled('testFeature'));
@@ -96,4 +96,60 @@ class FeaturesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $this->features->isEnabled('testFeature'));
     }
 
+
+    /**
+     * @test
+     */
+    public function it_can_set_threshold_on_collection()
+    {
+        $this->features->flush();
+        $this->features->create('testFeature')->add('test1', function () {
+            return true;
+        });
+        $this->features->setThreshold('testFeature', 33);
+        $this->assertEquals(33, $this->features->getCollection('testFeature')->getThreshold());
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_can_add_a_strategy_to_a_collection()
+    {
+        $this->features->flush();
+        $this->features->create('testFeature');
+        $this->features->pushStrategy('testFeature', 'testStrategy', 'Test');
+        $collection = $this->features->getCollection('testFeature');
+        $this->assertEquals(true, isset($collection['testStrategy']));
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_throws_exception_on_create_when_feature_already_exists()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->features->create('testExceptions');
+        $this->features->create('testExceptions');
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_throws_exception_when_pushing_to_unknown_feature()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->features->pushStrategy('asdf123', 'testStrategy', 'Test');
+    }
+
+    /**
+     * @test
+     */
+    public function it_throws_exception_when_getting_unknown_feature()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->features->get('asdf123');
+    }
 }
