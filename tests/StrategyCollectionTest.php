@@ -19,9 +19,7 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->collection = new StrategyCollection([
-            'DataTime' => [
-                'class' => 'DataTime'
-            ]
+            'DateTime' => ['DateTime']
         ]);
     }
 
@@ -43,7 +41,7 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
 
         $expected = true;
 
-        $actual = isset($this->collection['DataTime']);
+        $actual = isset($this->collection['DateTime']);
 
         $this->assertEquals($expected, $actual);
     }
@@ -57,14 +55,34 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
 
         $expected = true;
 
-        $this->collection->add('test1', function () {
-        });
+        $this->collection->add('test1', function () {});
         $actual = is_callable($this->collection['test1']['class']);
         $this->assertEquals($expected, $actual);
 
         $this->collection->add('test2', 'UserAgent', []);
         $actual = $this->collection['test2']['class'];
         $this->assertEquals('\Humweb\Features\Strategy\UserAgentStrategy', $actual);
+    }
+
+
+    /**
+     * @test
+     */
+    public function i_can_add_multiple_strategies_at_once()
+    {
+        $this->collection->flush();
+
+        $this->assertFalse(isset($this->collection['test1']));
+        $this->assertFalse(isset($this->collection['test2']));
+
+        $this->collection->add([
+            'test1' => ['DateTime'],
+            'test2' => ['UserAgent']
+        ]);
+
+
+        $this->assertTrue(isset($this->collection['test1']));
+        $this->assertTrue(isset($this->collection['test2']));
     }
 
 
@@ -113,8 +131,64 @@ class StrategyCollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->collection->off();
         $this->assertEquals(false, $this->collection->check());
+        $this->assertEquals(0, $this->collection->getStatus());
 
         $this->collection->on();
         $this->assertEquals(true, $this->collection->check());
+        $this->assertEquals(1, $this->collection->getStatus());
     }
+
+
+    /**
+     * @test
+     */
+    public function i_can_unset_by_array_offset()
+    {
+        $this->collection->flush();
+        $this->collection['test1'] = ['DateTime'];
+        $this->assertTrue(isset($this->collection['test1']));
+
+        unset($this->collection['test1']);
+
+        $this->assertFalse(isset($this->collection['test1']));
+    }
+
+
+    /**
+     * @test
+     */
+    public function i_can_set_threshold()
+    {
+        $this->collection->flush();
+        $this->collection->setThreshold(3);
+        $this->assertEquals(3, $this->collection->getThreshold());
+
+        $this->collection->setThreshold(2);
+        $this->assertEquals(2, $this->collection->getThreshold());
+    }
+
+
+    /**
+     * @test
+     */
+    public function i_can_get_status()
+    {
+        $this->collection->flush();
+        $this->assertEquals(0, count($this->collection->getStrategies()));
+        $this->collection['test1'] = ['DateTime'];
+        $this->assertEquals(1, count($this->collection->getStrategies()));
+    }
+
+    /**
+     * @test
+     */
+    public function i_can_get_strategies_array()
+    {
+        $this->collection->flush();
+        $this->assertEquals(0, count($this->collection->getStrategies()));
+        $this->collection['test1'] = ['DateTime'];
+        $this->assertEquals(1, count($this->collection->getStrategies()));
+    }
+
+
 }

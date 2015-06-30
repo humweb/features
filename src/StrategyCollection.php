@@ -180,11 +180,7 @@ class StrategyCollection implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        if (isset($this->strategies[$offset])) {
-            return $this->strategies[$offset];
-        }
-
-        return $this->strategies['__'.$offset];
+        return $this->strategies[$offset];
     }
 
 
@@ -203,7 +199,7 @@ class StrategyCollection implements \ArrayAccess
      */
     public function offsetSet($offset, $value)
     {
-        $this->strategies[$offset] = $value;
+        $this->add([$offset => $value]);
     }
 
 
