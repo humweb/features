@@ -5,6 +5,7 @@
 [![Build Status](https://img.shields.io/travis/humweb/features/master.svg?style=flat-square)](https://travis-ci.org/humweb/features)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/humweb/features/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/humweb/features/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/humweb/features/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/humweb/features/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/726e2642-6553-40e1-8b4f-71f8d905d7f9/mini.png)](https://insight.sensiolabs.com/projects/726e2642-6553-40e1-8b4f-71f8d905d7f9)
 [![Total Downloads](https://img.shields.io/packagist/dt/humweb/features.svg?style=flat-square)](https://packagist.org/packages/humweb/features)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/humweb/features.svg?style=flat-square)](https://packagist.org/packages/humweb/features)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
